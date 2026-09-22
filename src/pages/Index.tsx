@@ -7,10 +7,12 @@ import carlosSpeaker from "@/assets/carlos-speaker.webp";
 import carlosHeroBg from "@/assets/carlos-hero-bg.webp";
 
 /* ═══════════════════════════════════════════
-   EVENTO — Imersao Online Gratuita 30/10
+   EVENTO — Imersão Multicommerce · online · 30/10
    ═══════════════════════════════════════════ */
 
 const HOTMART_URL = "https://pay.hotmart.com/L107403868Y";
+const PRECO = "97";
+const PRECO_CHEIO = "197";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -25,23 +27,23 @@ const scaleIn = {
 const bullets = [
   {
     icon: TrendingUp,
-    title: "Escale com metodo, nao com sorte",
-    desc: "Quem cresce nos marketplaces nao tem sorte, tem metodo. Voce vai ver o passo a passo real.",
+    title: "Escale com método, não com sorte",
+    desc: "Quem cresce nos marketplaces não tem sorte, tem método. Você vai ver o passo a passo real.",
   },
   {
     icon: Shield,
     title: "Proteja a margem em cada canal",
-    desc: "Precificacao correta pra cada marketplace, sem virar refem de comissao e frete.",
+    desc: "Precificação correta pra cada marketplace, sem virar refém de comissão e frete.",
   },
   {
     icon: Target,
-    title: "Anuncio ativo, lucro no bolso",
-    desc: "Anuncio ativo, venda saindo e o lucro sumindo. Isso muda aqui.",
+    title: "Anúncio ativo, lucro no bolso",
+    desc: "Anúncio ativo, venda saindo e o lucro sumindo. Isso muda aqui.",
   },
   {
     icon: BarChart3,
-    title: "Do zero a operacao escalada",
-    desc: "Serve pra quem esta comecando e pra quem ja vende. Metodo replicavel nos 4 canais.",
+    title: "Do zero à operação escalada",
+    desc: "Serve pra quem está começando e pra quem já vende. Método replicável nos 4 canais.",
   },
 ];
 
@@ -81,14 +83,14 @@ const Index = () => {
         <nav className="fixed top-0 left-0 right-0 z-[5000] bg-[rgba(3,12,24,0.92)] backdrop-blur-[12px]">
           <div className="max-w-7xl mx-auto px-3 sm:px-6 h-16 sm:h-[72px] flex items-center justify-between gap-2 sm:gap-4">
             <span className="font-display text-[11px] sm:text-base tracking-tight flex-shrink-0">
-              <span className="text-white">IMERSAO</span>
-              <span className="text-primary ml-1">MARKETPLACES</span>
-              <span className="text-white/30 ml-1 text-[10px] hidden sm:inline">30/10</span>
+              <span className="text-white">IMERSÃO</span>
+              <span className="text-primary ml-1">MULTICOMMERCE</span>
+              <span className="text-white/50 ml-1 text-[10px] hidden sm:inline">30/10</span>
             </span>
 
             <div className="hidden lg:block text-center font-body font-medium text-[13px] leading-tight">
-              <span className="text-white/60">100% ONLINE E GRATUITO ·</span>
-              <span className="text-white font-bold underline ml-1">VAGAS LIMITADAS</span>
+              <span className="text-white/70">100% ONLINE · INGRESSO</span>
+              <span className="text-white font-bold ml-1">R$ {PRECO}</span>
             </div>
 
             <a
@@ -97,8 +99,8 @@ const Index = () => {
               rel="noopener noreferrer"
               className="flex-shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 rounded hover:brightness-110 transition-all flex items-center gap-1.5 sm:gap-2"
             >
-              <span className="hidden sm:inline">Garantir Vaga</span>
-              <span className="sm:hidden">Vaga</span>
+              <span className="hidden sm:inline">Comprar ingresso</span>
+              <span className="sm:hidden">Ingresso</span>
               <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </a>
           </div>
@@ -129,38 +131,38 @@ const Index = () => {
               <m.div variants={fadeUp}>
                 <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-[13px] font-body text-white/70">
                   <Zap className="w-4 h-4 text-primary" />
-                  IMERSAO ONLINE GRATUITA · <span className="text-primary font-bold">30 DE OUTUBRO</span>
+                  IMERSÃO ONLINE · <span className="text-primary font-bold">30 DE OUTUBRO</span>
                 </span>
               </m.div>
 
               <m.h1 variants={fadeUp} className="font-display text-[clamp(1.75rem,5.5vw,2.75rem)] mt-8 leading-[1.2] uppercase glow-text">
-                Vender mais nao e o problema.{" "}
-                <span className="text-primary">Lucrar e.</span>
+                Vender mais não é o problema.{" "}
+                <span className="text-primary">Lucrar é.</span>
               </m.h1>
 
               <m.p variants={fadeUp} className="mt-6 text-white/70 font-body font-medium text-base sm:text-xl max-w-2xl leading-[1.5]">
-                Dia 30/10, <span className="text-white font-semibold">Carlos Arantes</span> abre as estrategias que usa todo dia nos marketplaces pra escalar com margem. Shopee, Mercado Livre, Amazon e TikTok Shop.
+                Dia 30/10, <span className="text-white font-semibold">Carlos Arantes</span> abre as estratégias que usa todo dia nos marketplaces pra escalar com margem. Shopee, Mercado Livre, Amazon e TikTok Shop.
               </m.p>
 
               <m.div variants={fadeUp} className="mt-8">
                 <CtaButton className="px-10 sm:px-14 py-5 text-base glow-green-strong">
-                  Garanta sua vaga gratuita
+                  Quero meu ingresso · R$ {PRECO}
                 </CtaButton>
               </m.div>
 
-              <m.p variants={fadeUp} className="mt-6 font-body font-medium text-white/60 text-sm sm:text-base flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+              <m.p variants={fadeUp} className="mt-6 font-body font-medium text-white/70 text-sm sm:text-base flex flex-wrap items-center justify-center gap-2 sm:gap-3">
                 <span className="flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-primary" /> 100% online
                 </span>
-                <span className="text-white/20">·</span>
-                <span>Gratuito</span>
-                <span className="text-white/20">·</span>
-                <span>Vagas limitadas</span>
+                <span className="text-white/40">·</span>
+                <span>Dia inteiro</span>
+                <span className="text-white/40">·</span>
+                <span>Ingresso R$ {PRECO}</span>
               </m.p>
 
               {/* Logos-faixa dos 4 marketplaces */}
               <m.div variants={fadeUp} className="mt-12 sm:mt-14 w-full max-w-2xl">
-                <p className="text-white/30 font-body text-[10px] uppercase tracking-[0.2em] mb-4">Metodo aplicado em</p>
+                <p className="text-white/50 font-body text-[10px] uppercase tracking-[0.2em] mb-4">Método aplicado em</p>
                 <div className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 gap-y-3">
                   {marketplaces.map((mp) => (
                     <span
@@ -192,11 +194,11 @@ const Index = () => {
             >
               <m.p variants={fadeUp} className="flex items-center justify-center gap-2 text-primary font-body text-xs sm:text-sm font-semibold uppercase tracking-[0.15em] mb-4">
                 <span className="w-2 h-2 rounded-full bg-primary" />
-                O que voce vai destravar
+                O que você vai destravar
               </m.p>
               <m.h2 variants={fadeUp} className="font-display text-[clamp(1.6rem,4.2vw,2.25rem)] leading-[1.25] uppercase">
                 Em 1 dia,{" "}
-                <span className="text-gradient">o metodo completo</span>
+                <span className="text-gradient">o método completo</span>
               </m.h2>
             </m.div>
 
@@ -211,7 +213,7 @@ const Index = () => {
                 <m.div
                   key={b.title}
                   variants={scaleIn}
-                  className="group relative glass border border-white/8 hover:border-primary/30 rounded-2xl p-6 sm:p-7 transition-all duration-500"
+                  className="group relative glass border border-white/10 hover:border-primary/30 rounded-2xl p-6 sm:p-7 transition-all duration-500"
                 >
                   <div className="absolute top-0 left-6 right-6 h-[2px] bg-gradient-to-r from-transparent via-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   <div className="flex items-start gap-4">
@@ -250,7 +252,7 @@ const Index = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-60px" }}
               variants={scaleIn}
-              className="group relative rounded-3xl overflow-hidden bg-[#111] border border-white/8 hover:border-primary/25 transition-all duration-500 mb-16 sm:mb-20"
+              className="group relative rounded-3xl overflow-hidden bg-[#111] border border-white/10 hover:border-primary/25 transition-all duration-500 mb-16 sm:mb-20"
             >
               <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-primary to-transparent z-20" />
               <div className="flex flex-col md:flex-row">
@@ -267,7 +269,7 @@ const Index = () => {
                 <div className="flex-1 p-8 md:p-10 flex flex-col justify-center gap-5">
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    <span className="font-body text-primary text-[11px] font-bold uppercase tracking-widest">Apresentador da imersao</span>
+                    <span className="font-body text-primary text-[11px] font-bold uppercase tracking-widest">Apresentador da imersão</span>
                   </div>
 
                   <div>
@@ -276,25 +278,25 @@ const Index = () => {
                   </div>
 
                   <p className="font-body text-white/60 text-base leading-relaxed">
-                    Carlos Arantes atua todo dia dentro dos marketplaces e vai mostrar o passo a passo real que usa na propria operacao pra escalar Shopee, Mercado Livre, Amazon e TikTok Shop sem virar refem do canal.
+                    Carlos Arantes atua todo dia dentro dos marketplaces e vai mostrar o passo a passo real que usa na própria operação pra escalar Shopee, Mercado Livre, Amazon e TikTok Shop sem virar refém do canal.
                   </p>
 
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white/4 border border-white/6 rounded-xl px-4 py-3">
+                    <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
                       <p className="font-display text-primary text-lg leading-none">+10 anos</p>
-                      <p className="font-body text-white/40 text-xs mt-1 leading-snug">no mercado digital</p>
+                      <p className="font-body text-white/60 text-xs mt-1 leading-snug">no mercado digital</p>
                     </div>
-                    <div className="bg-white/4 border border-white/6 rounded-xl px-4 py-3">
+                    <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
                       <p className="font-display text-primary text-lg leading-none">4 canais</p>
-                      <p className="font-body text-white/40 text-xs mt-1 leading-snug">Shopee, ML, Amazon, TikTok</p>
+                      <p className="font-body text-white/60 text-xs mt-1 leading-snug">Shopee, ML, Amazon, TikTok</p>
                     </div>
-                    <div className="bg-white/4 border border-white/6 rounded-xl px-4 py-3">
-                      <p className="font-display text-primary text-lg leading-none">Metodo</p>
-                      <p className="font-body text-white/40 text-xs mt-1 leading-snug">replicavel e comprovado</p>
+                    <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
+                      <p className="font-display text-primary text-lg leading-none">Método</p>
+                      <p className="font-body text-white/60 text-xs mt-1 leading-snug">replicável e comprovado</p>
                     </div>
-                    <div className="bg-white/4 border border-white/6 rounded-xl px-4 py-3">
+                    <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
                       <p className="font-display text-primary text-lg leading-none">Online</p>
-                      <p className="font-body text-white/40 text-xs mt-1 leading-snug">aprenda de qualquer lugar</p>
+                      <p className="font-body text-white/60 text-xs mt-1 leading-snug">aprenda de qualquer lugar</p>
                     </div>
                   </div>
 
@@ -302,7 +304,7 @@ const Index = () => {
                     href="https://www.instagram.com/carlosarantesm/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="self-start flex items-center gap-2 px-4 py-2 rounded-full bg-white/6 border border-white/10 hover:bg-primary/10 hover:border-primary/30 transition-all text-white/50 hover:text-white font-body text-sm"
+                    className="self-start flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/15 hover:bg-primary/10 hover:border-primary/30 transition-all text-white/50 hover:text-white font-body text-sm"
                   >
                     <Instagram className="w-3.5 h-3.5" />
                     @carlosarantesm
@@ -320,18 +322,18 @@ const Index = () => {
               className="text-center max-w-2xl mx-auto"
             >
               <m.h2 variants={fadeUp} className="font-display text-[clamp(1.5rem,4vw,2rem)] leading-[1.25] uppercase mb-4">
-                Sua vaga <span className="text-primary">gratuita</span> te espera
+                Garanta seu <span className="text-primary">ingresso</span>
               </m.h2>
-              <m.p variants={fadeUp} className="font-body text-white/60 text-base sm:text-lg mb-8">
-                <Lightbulb className="w-4 h-4 text-primary inline mr-1 -mt-1" /> Dia 30/10 · 100% online · Vagas limitadas
+              <m.p variants={fadeUp} className="font-body text-white/70 text-base sm:text-lg mb-8">
+                <Lightbulb className="w-4 h-4 text-primary inline mr-1 -mt-1" /> Dia 30/10 · 100% online · Dia inteiro
               </m.p>
               <m.div variants={fadeUp}>
                 <CtaButton className="px-10 sm:px-14 py-5 text-base glow-green-strong">
-                  Garanta sua vaga gratuita
+                  Quero meu ingresso · R$ {PRECO}
                 </CtaButton>
               </m.div>
-              <m.p variants={fadeUp} className="mt-6 font-body text-white/40 text-xs sm:text-sm">
-                Voce sera redirecionado pra pagina oficial de inscricao.
+              <m.p variants={fadeUp} className="mt-6 font-body text-white/60 text-xs sm:text-sm">
+                Você será redirecionado pro checkout seguro da Hotmart.
               </m.p>
             </m.div>
 
@@ -340,11 +342,11 @@ const Index = () => {
 
         {/* ══ FOOTER ══ */}
         <footer className="border-t border-white/10 py-10 mt-4">
-          <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-white/40 font-body text-xs">
+          <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-white/60 font-body text-xs">
             <p>
-              <span className="text-white/70 font-semibold">IMERSAO MARKETPLACES</span> · Carlos Arantes · 30 de Outubro
+              <span className="text-white/80 font-semibold">IMERSÃO MULTICOMMERCE</span> · Carlos Arantes · 30 de Outubro
             </p>
-            <p>Evento online gratuito. Sujeito a alteracoes.</p>
+            <p>Evento online · Ingresso R$ {PRECO}. Sujeito a alterações.</p>
           </div>
         </footer>
 
