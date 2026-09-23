@@ -7,7 +7,7 @@ import carlosSpeaker from "@/assets/carlos-speaker.webp";
 import carlosHeroBg from "@/assets/carlos-hero-bg.webp";
 
 /* ═══════════════════════════════════════════
-   EVENTO — Imersão Multicommerce · online · 30/10
+   EVENTO — Imersão Multicommerce · online · 16/10
    ═══════════════════════════════════════════ */
 
 const HOTMART_URL = "https://pay.hotmart.com/L107403868Y";
@@ -49,11 +49,24 @@ const bullets = [
 
 const marketplaces = ["Shopee", "Mercado Livre", "Amazon", "TikTok Shop"];
 
+// Único sinal de conversão desta LP: os CTAs saem direto para o checkout da Hotmart.
+const trackCheckout = () => {
+  if (typeof window.fbq === "function") {
+    window.fbq("track", "InitiateCheckout", {
+      content_name: "Imersão Multicommerce",
+      content_category: "Evento",
+      value: Number(PRECO),
+      currency: "BRL",
+    });
+  }
+};
+
 const CtaButton = ({ className = "", children }: { className?: string; children: React.ReactNode }) => (
   <a
     href={HOTMART_URL}
     target="_blank"
     rel="noopener noreferrer"
+    onClick={trackCheckout}
     className={`inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-sm uppercase tracking-[0.1em] px-8 py-4 rounded hover:brightness-110 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 ${className}`}
   >
     {children}
@@ -85,7 +98,7 @@ const Index = () => {
             <span className="font-display text-[11px] sm:text-base tracking-tight flex-shrink-0">
               <span className="text-white">IMERSÃO</span>
               <span className="text-primary ml-1">MULTICOMMERCE</span>
-              <span className="text-white/50 ml-1 text-[10px] hidden sm:inline">30/10</span>
+              <span className="text-white/50 ml-1 text-[10px] hidden sm:inline">16/10</span>
             </span>
 
             <div className="hidden lg:block text-center font-body font-medium text-[13px] leading-tight">
@@ -97,6 +110,7 @@ const Index = () => {
               href={HOTMART_URL}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={trackCheckout}
               className="flex-shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 rounded hover:brightness-110 transition-all flex items-center gap-1.5 sm:gap-2"
             >
               <span className="hidden sm:inline">Comprar ingresso</span>
@@ -106,7 +120,7 @@ const Index = () => {
           </div>
         </nav>
 
-        {/* ══ HERO — Vender mais nao e o problema. Lucrar e. ══ */}
+        {/* ══ HERO — Case do mentorado: do zero a +R$ 800 mil/mes ══ */}
         <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden pt-16 sm:pt-[72px]">
           <img
             src={carlosHeroBg}
@@ -131,22 +145,26 @@ const Index = () => {
               <m.div variants={fadeUp}>
                 <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-[13px] font-body text-white/70">
                   <Zap className="w-4 h-4 text-primary" />
-                  IMERSÃO ONLINE · <span className="text-primary font-bold">30 DE OUTUBRO</span>
+                  IMERSÃO ONLINE · <span className="text-primary font-bold">16 DE OUTUBRO</span>
                 </span>
               </m.div>
 
-              <m.h1 variants={fadeUp} className="font-display text-[clamp(1.75rem,5.5vw,2.75rem)] mt-8 leading-[1.2] uppercase glow-text">
-                Vender mais não é o problema.{" "}
-                <span className="text-primary">Lucrar é.</span>
+              <m.h1 variants={fadeUp} className="font-display text-[clamp(1.4rem,3.9vw,2.2rem)] mt-8 leading-[1.25] uppercase glow-text">
+                Como ajudei um mentorado a sair do zero e faturar{" "}
+                <span className="text-primary">mais de R$&nbsp;800&nbsp;mil por mês</span> nos marketplaces, com produtos e estrutura ao seu alcance
               </m.h1>
 
+              <m.p variants={fadeUp} className="mt-4 font-body font-semibold text-sm sm:text-base text-white/80">
+                — Carlos Arantes, CEO da UseVertice
+              </m.p>
+
               <m.p variants={fadeUp} className="mt-6 text-white/70 font-body font-medium text-base sm:text-xl max-w-2xl leading-[1.5]">
-                Dia 30/10, <span className="text-white font-semibold">Carlos Arantes</span> abre as estratégias que usa todo dia nos marketplaces pra escalar com margem. Shopee, Mercado Livre, Amazon e TikTok Shop.
+                Dia 16/10, ao vivo, abro o passo a passo desse caso: <span className="text-white font-semibold">da escolha dos produtos à estrutura que sustenta a escala</span> na Shopee, Mercado Livre, Amazon e TikTok Shop.
               </m.p>
 
               <m.div variants={fadeUp} className="mt-8">
                 <CtaButton className="px-10 sm:px-14 py-5 text-base glow-green-strong">
-                  Quero meu ingresso · R$ {PRECO}
+                  Quero meu ingresso · R$&nbsp;{PRECO}
                 </CtaButton>
               </m.div>
 
@@ -278,7 +296,7 @@ const Index = () => {
                   </div>
 
                   <p className="font-body text-white/60 text-base leading-relaxed">
-                    Carlos Arantes atua todo dia dentro dos marketplaces e vai mostrar o passo a passo real que usa na própria operação pra escalar Shopee, Mercado Livre, Amazon e TikTok Shop sem virar refém do canal.
+                    Carlos Arantes atua todo dia dentro dos marketplaces. Na imersão, ele abre o caso do mentorado que saiu do zero e passou dos R$ 800 mil por mês, e o passo a passo pra escalar Shopee, Mercado Livre, Amazon e TikTok Shop sem virar refém do canal.
                   </p>
 
                   <div className="grid grid-cols-2 gap-3">
@@ -291,8 +309,8 @@ const Index = () => {
                       <p className="font-body text-white/60 text-xs mt-1 leading-snug">Shopee, ML, Amazon, TikTok</p>
                     </div>
                     <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
-                      <p className="font-display text-primary text-lg leading-none">Método</p>
-                      <p className="font-body text-white/60 text-xs mt-1 leading-snug">replicável e comprovado</p>
+                      <p className="font-display text-primary text-lg leading-none">+R$ 800 mil</p>
+                      <p className="font-body text-white/60 text-xs mt-1 leading-snug">por mês, faturamento de um mentorado</p>
                     </div>
                     <div className="bg-white/5 border border-white/10 rounded-xl px-4 py-3">
                       <p className="font-display text-primary text-lg leading-none">Online</p>
@@ -325,11 +343,11 @@ const Index = () => {
                 Garanta seu <span className="text-primary">ingresso</span>
               </m.h2>
               <m.p variants={fadeUp} className="font-body text-white/70 text-base sm:text-lg mb-8">
-                <Lightbulb className="w-4 h-4 text-primary inline mr-1 -mt-1" /> Dia 30/10 · 100% online · Dia inteiro
+                <Lightbulb className="w-4 h-4 text-primary inline mr-1 -mt-1" /> Dia 16/10 · 100% online · Dia inteiro
               </m.p>
               <m.div variants={fadeUp}>
                 <CtaButton className="px-10 sm:px-14 py-5 text-base glow-green-strong">
-                  Quero meu ingresso · R$ {PRECO}
+                  Quero meu ingresso · R$&nbsp;{PRECO}
                 </CtaButton>
               </m.div>
               <m.p variants={fadeUp} className="mt-6 font-body text-white/60 text-xs sm:text-sm">
@@ -344,7 +362,7 @@ const Index = () => {
         <footer className="border-t border-white/10 py-10 mt-4">
           <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-white/60 font-body text-xs">
             <p>
-              <span className="text-white/80 font-semibold">IMERSÃO MULTICOMMERCE</span> · Carlos Arantes · 30 de Outubro
+              <span className="text-white/80 font-semibold">IMERSÃO MULTICOMMERCE</span> · Carlos Arantes · 16 de Outubro
             </p>
             <p>Evento online · Ingresso R$ {PRECO}. Sujeito a alterações.</p>
           </div>
