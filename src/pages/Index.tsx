@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { m } from "framer-motion";
 import {
   ArrowRight, Calendar, Zap, TrendingUp, Shield,
@@ -5,6 +6,7 @@ import {
 } from "lucide-react";
 import carlosSpeaker from "@/assets/carlos-speaker.webp";
 import carlosHeroBg from "@/assets/carlos-hero-bg.webp";
+import { track, withCampaignParams } from "@/lib/tracking";
 
 /* ═══════════════════════════════════════════
    EVENTO — Imersão Multicommerce · online · 16/10
@@ -49,21 +51,20 @@ const bullets = [
 
 const marketplaces = ["Shopee", "Mercado Livre", "Amazon", "TikTok Shop"];
 
-// Único sinal de conversão desta LP: os CTAs saem direto para o checkout da Hotmart.
-const trackCheckout = () => {
-  if (typeof window.fbq === "function") {
-    window.fbq("track", "InitiateCheckout", {
-      content_name: "Imersão Multicommerce",
-      content_category: "Evento",
-      value: Number(PRECO),
-      currency: "BRL",
-    });
-  }
+const EVENTO = { content_name: "Imersão Multicommerce", content_category: "Evento", value: Number(PRECO), currency: "BRL" };
+
+const checkoutUrl = () => withCampaignParams(HOTMART_URL, window.location.search, document.cookie);
+
+// InitiateCheckout não sai daqui: a Hotmart já o envia pelo servidor quando o checkout
+// abre, e repetir no clique contaria cada checkout duas vezes. O clique vira AddToCart.
+const trackCheckout = (e: React.MouseEvent<HTMLAnchorElement>) => {
+  e.currentTarget.href = checkoutUrl();
+  track("AddToCart", EVENTO);
 };
 
 const CtaButton = ({ className = "", children }: { className?: string; children: React.ReactNode }) => (
   <a
-    href={HOTMART_URL}
+    href={checkoutUrl()}
     target="_blank"
     rel="noopener noreferrer"
     onClick={trackCheckout}
@@ -75,6 +76,18 @@ const CtaButton = ({ className = "", children }: { className?: string; children:
 );
 
 const Index = () => {
+  // ViewContent = leu pelo menos metade da página (público de remarketing mais quente que PageView).
+  useEffect(() => {
+    const onScroll = () => {
+      const lido = window.scrollY + window.innerHeight;
+      if (lido < document.documentElement.scrollHeight * 0.5) return;
+      track("ViewContent", EVENTO);
+      window.removeEventListener("scroll", onScroll);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <>
       {/* ══ PREMIUM BACKGROUND — fixed orbs + light beams ══ */}
@@ -107,7 +120,7 @@ const Index = () => {
             </div>
 
             <a
-              href={HOTMART_URL}
+              href={checkoutUrl()}
               target="_blank"
               rel="noopener noreferrer"
               onClick={trackCheckout}
