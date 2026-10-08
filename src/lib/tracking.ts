@@ -22,3 +22,19 @@ export const withCampaignParams = (checkoutUrl: string, search: string, cookie: 
 export const track = (event: string, params?: Record<string, unknown>) => {
   if (typeof window.fbq === "function") window.fbq("track", event, params);
 };
+
+/** Dispara o evento só na primeira vez da sessão; cliques repetidos no CTA contavam como carrinhos novos. */
+export const trackOncePerSession = (
+  event: string,
+  params?: Record<string, unknown>,
+  storage: Pick<Storage, "getItem" | "setItem"> = window.sessionStorage,
+) => {
+  const key = `tracked:${event}`;
+  try {
+    if (storage.getItem(key)) return;
+    storage.setItem(key, "1");
+  } catch {
+    // Webview com storage bloqueado: melhor contar duas vezes do que não contar.
+  }
+  track(event, params);
+};

@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import carlosSpeaker from "@/assets/carlos-speaker.webp";
 import carlosHeroBg from "@/assets/carlos-hero-bg.webp";
-import { track, withCampaignParams } from "@/lib/tracking";
+import { track, trackOncePerSession, withCampaignParams } from "@/lib/tracking";
 
 /* ═══════════════════════════════════════════
    EVENTO — Imersão Multicommerce · online · 16/10
@@ -55,18 +55,22 @@ const EVENTO = { content_name: "Imersão Multicommerce", content_category: "Even
 
 const checkoutUrl = () => withCampaignParams(HOTMART_URL, window.location.search, document.cookie);
 
-// InitiateCheckout não sai daqui: a Hotmart já o envia pelo servidor quando o checkout
-// abre, e repetir no clique contaria cada checkout duas vezes. O clique vira AddToCart.
+// InitiateCheckout não sai daqui: a Hotmart já o envia quando o checkout abre, e
+// repetir no clique contaria cada checkout duas vezes. O clique vira AddToCart.
+// O checkout abre na mesma aba: no navegador interno do Instagram/Facebook, nova aba
+// empilha webview ou não abre. A navegação espera um instante para o pixel sair.
 const trackCheckout = (e: React.MouseEvent<HTMLAnchorElement>) => {
-  e.currentTarget.href = checkoutUrl();
-  track("AddToCart", EVENTO);
+  const url = checkoutUrl();
+  e.currentTarget.href = url;
+  trackOncePerSession("AddToCart", EVENTO);
+  if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+  e.preventDefault();
+  setTimeout(() => window.location.assign(url), 150);
 };
 
 const CtaButton = ({ className = "", children }: { className?: string; children: React.ReactNode }) => (
   <a
     href={checkoutUrl()}
-    target="_blank"
-    rel="noopener noreferrer"
     onClick={trackCheckout}
     className={`inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-sm uppercase tracking-[0.1em] px-8 py-4 rounded hover:brightness-110 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 ${className}`}
   >
@@ -121,8 +125,6 @@ const Index = () => {
 
             <a
               href={checkoutUrl()}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={trackCheckout}
               className="flex-shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 rounded hover:brightness-110 transition-all flex items-center gap-1.5 sm:gap-2"
             >

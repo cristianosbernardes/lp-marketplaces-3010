@@ -1,5 +1,5 @@
-import { describe, it, expect } from "vitest";
-import { withCampaignParams } from "@/lib/tracking";
+import { describe, it, expect, vi } from "vitest";
+import { trackOncePerSession, withCampaignParams } from "@/lib/tracking";
 
 const CHECKOUT = "https://pay.hotmart.com/L107403868Y";
 
@@ -19,5 +19,30 @@ describe("withCampaignParams", () => {
 
   it("não inventa parâmetro em visita sem campanha", () => {
     expect(withCampaignParams(CHECKOUT, "", "")).toBe(CHECKOUT);
+  });
+});
+
+describe("trackOncePerSession", () => {
+  const memoria = () => {
+    const dados = new Map<string, string>();
+    return { getItem: (k: string) => dados.get(k) ?? null, setItem: (k: string, v: string) => void dados.set(k, v) };
+  };
+
+  it("conta o AddToCart uma vez só, mesmo com cliques repetidos", () => {
+    const fbq = vi.fn();
+    window.fbq = fbq;
+    const storage = memoria();
+    trackOncePerSession("AddToCart", { value: 97 }, storage);
+    trackOncePerSession("AddToCart", { value: 97 }, storage);
+    expect(fbq).toHaveBeenCalledTimes(1);
+    expect(fbq).toHaveBeenCalledWith("track", "AddToCart", { value: 97 });
+  });
+
+  it("ainda dispara quando o webview bloqueia o storage", () => {
+    const fbq = vi.fn();
+    window.fbq = fbq;
+    const bloqueado = { getItem: () => { throw new Error("SecurityError"); }, setItem: () => {} };
+    trackOncePerSession("AddToCart", undefined, bloqueado);
+    expect(fbq).toHaveBeenCalledTimes(1);
   });
 });
