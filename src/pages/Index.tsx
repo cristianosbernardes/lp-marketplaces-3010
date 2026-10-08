@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { m } from "framer-motion";
 import {
   ArrowRight, Calendar, Zap, TrendingUp, Shield,
-  Target, Lightbulb, BarChart3, Instagram,
+  Target, BarChart3, Instagram,
 } from "lucide-react";
 import carlosSpeaker from "@/assets/carlos-speaker.webp";
 import carlosHeroBg from "@/assets/carlos-hero-bg.webp";
@@ -72,7 +72,7 @@ const CtaButton = ({ className = "", children }: { className?: string; children:
   <a
     href={checkoutUrl()}
     onClick={trackCheckout}
-    className={`inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-sm uppercase tracking-[0.1em] px-8 py-4 rounded hover:brightness-110 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 ${className}`}
+    className={`inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-sm uppercase tracking-[0.1em] px-8 py-4 rounded hover:brightness-110 transition-all duration-300 hover:shadow-lg hover:shadow-primary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background ${className}`}
   >
     {children}
     <ArrowRight className="w-5 h-5" />
@@ -126,7 +126,7 @@ const Index = () => {
             <a
               href={checkoutUrl()}
               onClick={trackCheckout}
-              className="flex-shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 rounded hover:brightness-110 transition-all flex items-center gap-1.5 sm:gap-2"
+              className="flex-shrink-0 bg-primary hover:bg-primary/90 text-primary-foreground font-body font-bold text-[10px] sm:text-[11px] uppercase tracking-wider px-3 sm:px-4 py-2 sm:py-2.5 rounded hover:brightness-110 transition-all flex items-center gap-1.5 sm:gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <span className="hidden sm:inline">Comprar ingresso</span>
               <span className="sm:hidden">Ingresso</span>
@@ -358,7 +358,7 @@ const Index = () => {
                 Garanta seu <span className="text-primary">ingresso</span>
               </m.h2>
               <m.p variants={fadeUp} className="font-body text-white/70 text-base sm:text-lg mb-8">
-                <Lightbulb className="w-4 h-4 text-primary inline mr-1 -mt-1" /> Dia 16/10 · 100% online · Dia inteiro
+                <Calendar className="w-4 h-4 text-primary inline mr-1 -mt-1" /> Dia 16/10 · 100% online · Dia inteiro
               </m.p>
               <m.div variants={fadeUp}>
                 <CtaButton className="px-10 sm:px-14 py-5 text-base glow-green-strong">
