@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import carlosSpeaker from "@/assets/carlos-speaker.webp";
 import carlosHeroBg from "@/assets/carlos-hero-bg.webp";
+import thiagoCarlosFelizzo from "@/assets/thiago-carlos-felizzo.webp";
 import { track, trackOncePerSession, withCampaignParams } from "@/lib/tracking";
 
 /* ═══════════════════════════════════════════
@@ -155,7 +156,7 @@ const Index = () => {
             <div className="absolute" style={{ top: "-5%", right: "20%", width: 55, height: "70%", background: "linear-gradient(to bottom, rgba(34,197,94,0.08) 0%, transparent 100%)", transform: "rotate(-10deg)", transformOrigin: "top center", filter: "blur(18px)" }} />
           </div>
 
-          <div className="relative z-10 text-center px-6 max-w-4xl mx-auto flex flex-col items-center">
+          <div className="relative z-20 text-center px-6 pb-16 sm:pb-24 max-w-4xl mx-auto flex flex-col items-center">
             <m.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
               <m.div variants={fadeUp}>
                 <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-[13px] font-body text-white/70">
@@ -191,13 +192,13 @@ const Index = () => {
               </m.p>
 
               {/* Logos-faixa dos 4 marketplaces */}
-              <m.div variants={fadeUp} className="mt-12 sm:mt-14 w-full max-w-2xl">
-                <p className="text-white/50 font-body text-[10px] uppercase tracking-[0.2em] mb-4">Método aplicado em</p>
+              <m.div variants={fadeUp} className="mt-12 sm:mt-14 w-full max-w-3xl border-t border-white/10 pt-6 sm:pt-8">
+                <p className="text-white/60 font-body text-[11px] uppercase tracking-[0.2em] mb-4">Método aplicado em</p>
                 <div className="flex flex-wrap items-center justify-center gap-x-6 sm:gap-x-10 gap-y-3">
                   {marketplaces.map((mp) => (
                     <span
                       key={mp}
-                      className="font-display text-white/40 text-sm sm:text-base uppercase tracking-wide hover:text-white/60 transition-colors"
+                      className="font-display text-white/80 text-sm sm:text-lg uppercase tracking-wide"
                     >
                       {mp}
                     </span>
@@ -208,6 +209,41 @@ const Index = () => {
           </div>
 
           <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent z-10" />
+        </section>
+
+        {/* ══ PROVA — Thiago (Felizzo), o caso do título ══ */}
+        {/* TODO: frase e cargo pendentes de aprovação do Thiago — não publicar antes. */}
+        <section className="relative py-14 sm:py-20">
+          <m.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={stagger}
+            className="max-w-5xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
+          >
+            <m.div variants={fadeUp} className="relative rounded-2xl overflow-hidden border border-white/10 max-w-sm mx-auto md:max-w-none w-full">
+              <img
+                src={thiagoCarlosFelizzo}
+                alt="Thiago, da Felizzo, e Carlos Arantes no centro de distribuição da Felizzo"
+                width={960}
+                height={1200}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-auto block"
+              />
+            </m.div>
+
+            <m.figure variants={fadeUp} className="text-center md:text-left">
+              <p className="font-display text-primary text-[clamp(2rem,6vw,3rem)] leading-none">+R$&nbsp;800 mil</p>
+              <p className="font-body text-white/60 text-sm uppercase tracking-[0.15em] mt-2 mb-6">por mês, saindo do zero</p>
+              <blockquote className="font-body text-white text-lg sm:text-xl leading-[1.5] font-medium">
+                “O Carlos e a CTA Marketing entraram na Felizzo como se a empresa fosse deles: <span className="text-primary">produto certo, estrutura para escalar e margem em cada marketplace</span>. Saímos do zero e passamos dos R$&nbsp;800 mil por mês.”
+              </blockquote>
+              <figcaption className="mt-5 font-body text-sm text-white/70">
+                <span className="text-white font-semibold">Thiago</span> · Fundador da Felizzo
+              </figcaption>
+            </m.figure>
+          </m.div>
         </section>
 
         {/* ══ DOBRA 2 — Bullets + Quem apresenta + CTA final ══ */}
