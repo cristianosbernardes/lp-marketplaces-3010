@@ -164,17 +164,16 @@ const Index = () => {
                 </span>
               </m.div>
 
-              <m.h1 variants={fadeUp} className="font-display text-[clamp(1.4rem,3.9vw,2.2rem)] mt-8 leading-[1.25] uppercase glow-text">
-                Como ajudei um mentorado a sair do zero e faturar{" "}
-                <span className="text-primary">mais de R$&nbsp;800&nbsp;mil por mês</span> nos marketplaces, com produtos e estrutura ao seu alcance
+              <m.h1 variants={fadeUp} className="font-display text-[clamp(1.9rem,6vw,3.25rem)] mt-8 leading-[1.15] uppercase glow-text">
+                Do zero a <span className="text-primary">R$&nbsp;800&nbsp;mil por mês</span> nos marketplaces
               </m.h1>
 
-              <m.p variants={fadeUp} className="mt-4 font-body font-semibold text-sm sm:text-base text-white/80">
-                — Carlos Arantes, CEO da UseVertice
+              <m.p variants={fadeUp} className="mt-5 font-body font-semibold text-base sm:text-lg text-white/80 max-w-xl">
+                O caso real, mostrado na prática: como chegar lá.
               </m.p>
 
-              <m.p variants={fadeUp} className="mt-6 text-white/70 font-body font-medium text-base sm:text-xl max-w-2xl leading-[1.5]">
-                Dia 16/10, ao vivo, abro o passo a passo desse caso: <span className="text-white font-semibold">da escolha dos produtos à estrutura que sustenta a escala</span> na Shopee, Mercado Livre, Amazon e TikTok Shop.
+              <m.p variants={fadeUp} className="mt-4 text-white/70 font-body font-medium text-base sm:text-xl max-w-2xl leading-[1.5]">
+                Ao vivo, mostro o passo a passo: <span className="text-white font-semibold">dos produtos à estrutura que sustenta a escala</span>.
               </m.p>
 
               <m.div variants={fadeUp} className="mt-8">
@@ -189,8 +188,6 @@ const Index = () => {
                 </span>
                 <span className="text-white/40">·</span>
                 <span>Dia inteiro</span>
-                <span className="text-white/40">·</span>
-                <span>Ingresso R$ {PRECO}</span>
               </m.p>
 
               {/* Logos-faixa dos 4 marketplaces */}
