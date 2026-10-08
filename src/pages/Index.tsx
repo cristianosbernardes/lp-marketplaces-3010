@@ -156,7 +156,7 @@ const Index = () => {
             <div className="absolute" style={{ top: "-5%", right: "20%", width: 55, height: "70%", background: "linear-gradient(to bottom, rgba(34,197,94,0.08) 0%, transparent 100%)", transform: "rotate(-10deg)", transformOrigin: "top center", filter: "blur(18px)" }} />
           </div>
 
-          <div className="relative z-20 text-center px-6 pb-16 sm:pb-24 max-w-4xl mx-auto flex flex-col items-center">
+          <div className="relative z-20 w-full text-center px-6 pb-16 sm:pb-24 max-w-4xl mx-auto flex flex-col items-center">
             <m.div initial="hidden" animate="visible" variants={stagger} className="flex flex-col items-center">
               <m.div variants={fadeUp}>
                 <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 backdrop-blur-sm border border-white/10 text-[13px] font-body text-white/70">
@@ -165,7 +165,7 @@ const Index = () => {
                 </span>
               </m.div>
 
-              <m.h1 variants={fadeUp} className="font-display text-[clamp(1.9rem,6vw,3.25rem)] mt-8 leading-[1.15] uppercase glow-text">
+              <m.h1 variants={fadeUp} className="font-display text-[clamp(1.6rem,7.4vw,3.25rem)] mt-8 leading-[1.15] uppercase glow-text">
                 Do zero a <span className="text-primary">R$&nbsp;800&nbsp;mil por mês</span> nos marketplaces
               </m.h1>
 
@@ -212,7 +212,6 @@ const Index = () => {
         </section>
 
         {/* ══ PROVA — Thiago (Felizzo), o caso do título ══ */}
-        {/* TODO: frase e cargo pendentes de aprovação do Thiago — não publicar antes. */}
         <section className="relative py-14 sm:py-20">
           <m.div
             initial="hidden"
@@ -234,7 +233,7 @@ const Index = () => {
             </m.div>
 
             <m.figure variants={fadeUp} className="text-center md:text-left">
-              <p className="font-display text-primary text-[clamp(2rem,6vw,3rem)] leading-none">+R$&nbsp;800 mil</p>
+              <p className="font-display text-primary text-[clamp(2rem,5vw,3rem)] leading-none">+R$&nbsp;800 mil</p>
               <p className="font-body text-white/60 text-sm uppercase tracking-[0.15em] mt-2 mb-6">por mês, saindo do zero</p>
               <blockquote className="font-body text-white text-lg sm:text-xl leading-[1.5] font-medium">
                 “O Carlos e a CTA Marketing entraram na Felizzo como se a empresa fosse deles: <span className="text-primary">produto certo, estrutura para escalar e margem em cada marketplace</span>. Saímos do zero e passamos dos R$&nbsp;800 mil por mês.”
