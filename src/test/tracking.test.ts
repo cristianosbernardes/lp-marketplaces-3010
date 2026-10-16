@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from "vitest";
-import { trackOncePerSession, withCampaignParams } from "@/lib/tracking";
+import { campaignParams, trackOncePerSession, withCampaignParams } from "@/lib/tracking";
 
 const CHECKOUT = "https://pay.hotmart.com/L107403868Y";
 
@@ -19,6 +19,19 @@ describe("withCampaignParams", () => {
 
   it("não inventa parâmetro em visita sem campanha", () => {
     expect(withCampaignParams(CHECKOUT, "", "")).toBe(CHECKOUT);
+  });
+});
+
+describe("campaignParams", () => {
+  it("leva UTMs e o fbclid do cookie para o cadastro da lista de espera", () => {
+    const p = campaignParams("?utm_source=ig&utm_campaign=espera", "_fbc=fb.1.1790000000000.IwAR_xyz");
+    expect(p.get("utm_source")).toBe("ig");
+    expect(p.get("utm_campaign")).toBe("espera");
+    expect(p.get("fbclid")).toBe("IwAR_xyz");
+  });
+
+  it("prefere o fbclid da URL ao do cookie", () => {
+    expect(campaignParams("?fbclid=URL", "_fbc=fb.1.1.COOKIE").get("fbclid")).toBe("URL");
   });
 });
 

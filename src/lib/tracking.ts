@@ -4,18 +4,23 @@
 
 const FBC_COOKIE = /(?:^|;\s*)_fbc=fb\.\d+\.\d+\.([^;]+)/;
 
+/** Parâmetros de campanha da visita atual: a query inteira mais o fbclid guardado no cookie _fbc. */
+export const campaignParams = (search: string, cookie: string): URLSearchParams => {
+  const params = new URLSearchParams(search);
+  // Visitante que voltou sem fbclid na URL ainda tem o clique guardado no cookie _fbc.
+  if (!params.has("fbclid")) {
+    const fbclid = cookie.match(FBC_COOKIE)?.[1];
+    if (fbclid) params.set("fbclid", fbclid);
+  }
+  return params;
+};
+
 /** Anexa ao link do checkout os parâmetros de campanha da visita atual. */
 export const withCampaignParams = (checkoutUrl: string, search: string, cookie: string): string => {
   const url = new URL(checkoutUrl);
-  new URLSearchParams(search).forEach((value, key) => {
+  campaignParams(search, cookie).forEach((value, key) => {
     if (!url.searchParams.has(key)) url.searchParams.set(key, value);
   });
-
-  // Visitante que voltou sem fbclid na URL ainda tem o clique guardado no cookie _fbc.
-  if (!url.searchParams.has("fbclid")) {
-    const fbclid = cookie.match(FBC_COOKIE)?.[1];
-    if (fbclid) url.searchParams.set("fbclid", fbclid);
-  }
   return url.toString();
 };
 
