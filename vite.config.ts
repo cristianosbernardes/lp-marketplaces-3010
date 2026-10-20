@@ -5,16 +5,23 @@ import { componentTagger } from "lovable-tagger";
 
 // A lista de espera e a LP alternam na raiz (redirect no vercel.json). Cada uma precisa do
 // próprio título e preview de compartilhamento, que robô de WhatsApp/Google lê sem rodar JS.
-// O build gera lista-de-espera.html a partir do index.html trocando só esses metadados.
-const ESPERA = {
-  url: "https://imersao.carlosarantes.com.br/lista-de-espera",
-  title: "Lista de espera — Imersão Multicommerce | Carlos Arantes",
-  description:
-    "Entre na lista de espera e saiba antes de todo mundo a data da próxima Imersão Multicommerce: do zero a R$ 800 mil por mês nos marketplaces.",
-};
+// O build gera lista-de-espera.html e links.html a partir do index.html trocando só esses metadados.
+const PAGINAS = [
+  {
+    slug: "lista-de-espera",
+    title: "Lista de espera — Imersão Multicommerce | Carlos Arantes",
+    description:
+      "Entre na lista de espera e saiba antes de todo mundo a data da próxima Imersão Multicommerce: do zero a R$ 800 mil por mês nos marketplaces.",
+  },
+  {
+    slug: "links",
+    title: "Carlos Arantes — Links",
+    description: "Canal no YouTube, Instagram e a Lucrometria do Carlos Arantes.",
+  },
+];
 
-const paginaEspera = (): Plugin => ({
-  name: "pagina-espera",
+const paginasExtras = (): Plugin => ({
+  name: "paginas-extras",
   apply: "build",
   enforce: "post",
   generateBundle(_, bundle) {
@@ -22,16 +29,19 @@ const paginaEspera = (): Plugin => ({
     if (index?.type !== "asset") return;
     const meta = (html: string, attr: string, value: string) =>
       html.replace(new RegExp(`(<meta ${attr} content=")[^"]*`), `$1${value}`);
-    let html = String(index.source)
-      .replace(/<title>[^<]*<\/title>/, `<title>${ESPERA.title}</title>`)
-      .replace(/(<link rel="canonical" href=")[^"]*/, `$1${ESPERA.url}`)
-      // o schema do evento anuncia ingresso à venda; na lista de espera não há
-      .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/, "");
-    for (const attr of ['name="description"', 'property="og:description"', 'name="twitter:description"'])
-      html = meta(html, attr, ESPERA.description);
-    for (const attr of ['property="og:title"', 'name="twitter:title"']) html = meta(html, attr, ESPERA.title);
-    html = meta(html, 'property="og:url"', ESPERA.url);
-    this.emitFile({ type: "asset", fileName: "lista-de-espera.html", source: html });
+    for (const { slug, title, description } of PAGINAS) {
+      const url = `https://imersao.carlosarantes.com.br/${slug}`;
+      let html = String(index.source)
+        .replace(/<title>[^<]*<\/title>/, `<title>${title}</title>`)
+        .replace(/(<link rel="canonical" href=")[^"]*/, `$1${url}`)
+        // o schema do evento anuncia ingresso à venda; fora da LP não há
+        .replace(/\s*<script type="application\/ld\+json">[\s\S]*?<\/script>/, "");
+      for (const attr of ['name="description"', 'property="og:description"', 'name="twitter:description"'])
+        html = meta(html, attr, description);
+      for (const attr of ['property="og:title"', 'name="twitter:title"']) html = meta(html, attr, title);
+      html = meta(html, 'property="og:url"', url);
+      this.emitFile({ type: "asset", fileName: `${slug}.html`, source: html });
+    }
   },
 });
 
@@ -44,7 +54,7 @@ export default defineConfig(({ mode }) => ({
       overlay: false,
     },
   },
-  plugins: [react(), paginaEspera(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [react(), paginasExtras(), mode === "development" && componentTagger()].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),

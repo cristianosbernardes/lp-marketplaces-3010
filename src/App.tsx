@@ -5,6 +5,7 @@ import Index from "./pages/Index";
 
 const NotFound = lazy(() => import("./pages/NotFound"));
 const ListaDeEspera = lazy(() => import("./pages/ListaDeEspera"));
+const Links = lazy(() => import("./pages/Links"));
 
 const App = () => (
   <LazyMotion features={domAnimation} strict>
@@ -15,6 +16,7 @@ const App = () => (
           {/* LP guardada para a próxima turma; a raiz redireciona para a lista (vercel.json) */}
           <Route path="/lp" element={<Index />} />
           <Route path="/lista-de-espera" element={<ListaDeEspera />} />
+          <Route path="/links" element={<Links />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

@@ -4,6 +4,7 @@
   ],
   "rewrites": [
     { "source": "/lista-de-espera", "destination": "/lista-de-espera.html" },
+    { "source": "/links", "destination": "/links.html" },
     {
       "source": "/((?!assets/|api/|.*\\.).*)",
       "destination": "/index.html"
