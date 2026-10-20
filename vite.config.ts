@@ -16,7 +16,7 @@ const PAGINAS = [
   {
     slug: "links",
     title: "Carlos Arantes — Links",
-    description: "Canal no YouTube, Instagram e a Lucrometria do Carlos Arantes.",
+    description: "CTA Marketing, Método FRO, canal no YouTube, Instagram e a Lucrometria do Carlos Arantes.",
   },
 ];
 
